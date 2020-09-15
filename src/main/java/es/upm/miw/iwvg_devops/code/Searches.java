@@ -48,8 +48,8 @@ public class Searches {
     public Fraction findFractionMultiplicationByUserFamilyName(String familyName) {
         return new UsersDatabase().findAll()
                 .filter(user -> familyName.equals(user.getFamilyName()))
-                .flatMap(user -> user.getFractions().stream()
-                )
+                .flatMap(fraction -> fraction.getFractions().stream())
+                .reduce(new Fraction(1,1), Fraction::division);
 
     }
 
